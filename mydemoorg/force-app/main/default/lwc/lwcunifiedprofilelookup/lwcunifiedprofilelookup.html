@@ -1,0 +1,490 @@
+<!--
+  @description       : 
+  @author            : Anusha V
+  @group             : 
+  @last modified on  : 11-03-2023
+  @last modified by  : Anusha V
+-->
+<template>
+    <div class="slds-card">
+        <lightning-layout multiple-rows="multiple-rows">
+            <lightning-layout-item size="12" padding="horizontal-large">
+                <div class="sb-example-1 slds-align_absolute-center slds-m-top_large">
+                    <div class="search">
+                        <input type="number" class="searchTerm" placeholder="Mobile Number...." pattern="[0-9]*" style="text-align:center" onchange={handleinputchange}>
+                            <button class="slds-button slds-button_icon slds-button_icon-brand searchButton" title="Search" onclick={fetchdata}>
+                                <lightning-icon icon-name="standard:search" alternative-text="" title=""></lightning-icon>
+                                <span class="slds-assistive-text">Search</span>
+                            </button>
+                        </div>
+                    </div>
+                </lightning-layout-item>
+                <template if:true={data}>
+                    <template if:true={isLoading}>
+                        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+                    </template>
+                    <lightning-layout-item size="12" padding="horizontal-large" class="slds-m-top_x-large">
+                        <h3 class="test-id__section-header-container slds-section__title slds-theme--shade" style="background-color: #caccc5;">
+                            <span style="color: #0e53ba;font-weight: 600;font-family: sans-serif;" class="test-id__section-header-title section-header-title slds-p-horizontal--small" title="Section Title">Mr Rahul Arora</span>
+                        </h3>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="horizontal-large">
+                        <lightning-layout multiple-rows="multiple-rows" class="slds-m-top_medium">
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <lightning-input label="CDP ID:" title="CDPID" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <lightning-input label="Email ID:" title="EAILID" type="email" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <lightning-input label="Alternate No:" title="ALTERNATENO" type="phone" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="PAN:" title="PAN" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="City:" title="City" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Age:" title="Age" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Occupation:" title="Occupation" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Gender:" title="Gender" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Income:" title="Income" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="State:" title="State" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Family Size:" title="FamilySize" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                        </lightning-layout>
+
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="horizontal-large" class="slds-m-top_large">
+                        <h3 class="test-id__section-header-container slds-section__title slds-theme--shade" style="background-color: #caccc5;">
+                            <span style="color: #0e53ba;font-weight: 600;font-family: sans-serif;" class="test-id__section-header-title section-header-title slds-p-horizontal--small" title="Section Title">Ownership Information</span>
+                        </h3>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="horizontal-large" class="slds-m-top_medium">
+                        <lightning-layout multiple-rows="multiple-rows">
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="No of cars:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Purchase:" type="email" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="AMC:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="WYH App:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Last Service Date:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Last Service Type:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="12" padding="horizontal-large">
+                                <lightning-layout multiple-rows="true" class="slds-align_absolute-center">
+                                    <lightning-layout-item size="3" padding="horizontal-large">
+                                        <lightning-accordion class="example-accordion" allow-multiple-sections-open="true">
+                                            <lightning-accordion-section name="A" label="VIN:" class="lbl">
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                            </lightning-accordion-section>
+                                        </lightning-accordion>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="3" padding="horizontal-large">
+                                        <lightning-accordion class="example-accordion" allow-multiple-sections-open="true">
+                                            <lightning-accordion-section name="A" label="Model:" class="lbl">
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                            </lightning-accordion-section>
+                                        </lightning-accordion>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="3" padding="horizontal-large">
+                                        <lightning-accordion class="example-accordion" allow-multiple-sections-open="true">
+                                            <lightning-accordion-section name="A" label="Dealer:" class="lbl">
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                            </lightning-accordion-section>
+                                        </lightning-accordion>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="3" padding="horizontal-large">
+                                        <lightning-accordion class="example-accordion" allow-multiple-sections-open="true">
+                                            <lightning-accordion-section name="A" label="Reg#:" class="lbl">
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                            </lightning-accordion-section>
+                                        </lightning-accordion>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-button style="float:right" variant="neutral" label="More" title="More" onclick={handleOwnershipInfo} icon-name="standard:sales_path" class="slds-p-around_xxx-small"></lightning-button>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="horizontal-large" class="slds-m-top_large">
+                        <h3 class="test-id__section-header-container slds-section__title slds-theme--shade" style="background-color: #caccc5;">
+                            <span style="color: #0e53ba;font-weight: 600;font-family: sans-serif;" class="test-id__section-header-title section-header-title slds-p-horizontal--small" title="Section Title">Customer Experience</span>
+                        </h3>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="horizontal-large" class="slds-m-top_medium">
+                        <lightning-layout multiple-rows="multiple-rows">
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="MRC CSAT:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Dealership CSAT:" type="email" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Lost Lead Survey:" type="phone" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Test Drive CSAT:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Lost Enquiry Survey:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Booking CSAT:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Website CSAT:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Delivery CSAT:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Online Booking CSAT :" title="Income" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Service NPS:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-button style="float:right" variant="neutral" label="More" title="More" onclick={handleCustomerExp} icon-name="standard:sales_path" class="slds-p-around_xxx-small"></lightning-button>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="horizontal-large" class="slds-m-top_large">
+                        <h3 class="test-id__section-header-container slds-section__title slds-theme--shade" style="background-color: #caccc5;">
+                            <span style="color: #0e53ba;font-weight: 600;font-family: sans-serif;" class="test-id__section-header-title section-header-title slds-p-horizontal--small" title="Section Title">Customer Journey</span>
+                        </h3>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="horizontal-large" class="slds-m-top_medium">
+                        <lightning-layout
+                            multiple-rows="multiple-rows">
+                            <!-- <lightning-layout-item size="6" padding="horizontal-large">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <lightning-input label="Lead Id:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </lightning-layout-item> -->
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Lead Source:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <!-- <lightning-layout-item size="6" padding="horizontal-large">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <lightning-input label="Enquiry Id:" type="phone" variant="label-inline" class="lbl"></lightning-input>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </lightning-layout-item> -->
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Enquiry Type:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <!-- <lightning-layout-item size="6" padding="horizontal-large">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <lightning-input label="Test Drive ID:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </lightning-layout-item> -->
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Enquiry Source:" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <!-- <lightning-layout-item size="6" padding="horizontal-large">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <lightning-input label="Booking Id:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </lightning-layout-item> -->
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Test Drive Date:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Vehicle Del Note :" title="Income" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Booking Date:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Booking Del Date:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large">
+                                <lightning-input label="Customer Status:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="12" padding="horizontal-large">
+                                <lightning-layout multiple-rows="true" class="slds-align_absolute-center">
+                                    <lightning-layout-item size="3" padding="horizontal-large">
+                                        <lightning-accordion class="example-accordion" allow-multiple-sections-open="true">
+                                            <lightning-accordion-section name="A" label="Lead Id:" class="lbl">
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                                <p>111111111</p>
+                                                <p>111111111</p>
+                                            </lightning-accordion-section>
+                                        </lightning-accordion>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="3" padding="horizontal-large">
+                                        <lightning-accordion class="example-accordion" allow-multiple-sections-open="true">
+                                            <lightning-accordion-section name="A" label="Enquiry Id:" class="lbl">
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                                <p>111111111</p>
+                                                <p>111111111</p>
+                                            </lightning-accordion-section>
+                                        </lightning-accordion>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="3" padding="horizontal-large">
+                                        <lightning-accordion class="example-accordion" allow-multiple-sections-open="true">
+                                            <lightning-accordion-section name="A" label="Test Drive Id:" class="lbl">
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                                <p>111111111</p>
+                                                <p>111111111</p>
+                                            </lightning-accordion-section>
+                                        </lightning-accordion>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="3" padding="horizontal-large">
+                                        <lightning-accordion class="example-accordion" allow-multiple-sections-open="true">
+                                            <lightning-accordion-section name="A" label="Booking Id:" class="lbl">
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                                <p>11111111</p>
+                                                <p>111111111</p>
+                                                <p>111111111</p>
+                                            </lightning-accordion-section>
+                                        </lightning-accordion>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </lightning-layout-item>
+
+                        </lightning-layout>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="horizontal-large" class="slds-m-top_large">
+                        <h3 class="test-id__section-header-container slds-section__title slds-theme--shade" style="background-color: #caccc5;">
+                            <span style="color: #0e53ba;font-weight: 600;font-family: sans-serif;" class="test-id__section-header-title section-header-title slds-p-horizontal--small" title="Section Title">Customer Touchpoints</span>
+                        </h3>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="horizontal-large" class="slds-m-top_medium">
+                        <lightning-layout multiple-rows="multiple-rows">
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <lightning-input label="Website Time Spent:" title="" type="text" variant="label-inline" class="lbl" placeholder="No of miniutes"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <lightning-input label="Call Center No of Calls:" title="" type="email" variant="label-inline" class="lbl" placeholder="Count of calls"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <lightning-input label="Dealership visits:" title="" type="phone" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <lightning-input label="Website Pages Visited:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <lightning-input label="Converted To Enquiry:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <lightning-input label="Delearship Name:" title="" type="text" variant="label-inline" class="lbl"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <label>Website Events:</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <label>Call Centre Events:</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <label>Dealership Events:</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large" class="slds-m-top_medium">
+                                <div>
+                                    <span class="slds-pill slds-pill_link">
+                                        <a href="#" class="slds-pill__action" title="Full pill label verbiage mirrored here" style="background-color: #92d192;">
+
+                                            <span class="slds-pill__label">Download Brochure</span>
+                                        </a>
+                                    </span>
+
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large" class="slds-m-top_medium">
+
+                                <div>
+                                    <span class="slds-pill slds-pill_link">
+                                        <a href="#" class="slds-pill__action" title="Full pill label verbiage mirrored here">
+                                            <span class="slds-pill__label">Schedule a TD</span>
+                                        </a>
+                                    </span>
+
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large" class="slds-m-top_medium">
+
+                                <div>
+                                    <span class="slds-pill slds-pill_link">
+                                        <a href="#" class="slds-pill__action" title="Full pill label verbiage mirrored here" style="background-color: #92d192;">
+
+                                            <span class="slds-pill__label">Enquiry created</span>
+                                        </a>
+                                    </span>
+
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <div>
+                                    <span class="slds-pill slds-pill_link">
+                                        <a href="#" class="slds-pill__action" title="Full pill label verbiage mirrored here">
+                                            <span class="slds-pill__label">Viewed configurator</span>
+
+                                        </a>
+                                    </span>
+
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <div>
+                                    <span class="slds-pill slds-pill_link">
+                                        <a href="#" class="slds-pill__action" title="Full pill label verbiage mirrored here" style="background-color: #92d192;">
+
+                                            <span class="slds-pill__label">Shared Brochure on WA</span>
+
+                                        </a>
+                                    </span>
+
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <div>
+                                    <span class="slds-pill slds-pill_link">
+                                        <a href="#" class="slds-pill__action" title="Full pill label verbiage mirrored here">
+                                            <span class="slds-pill__label">Test drive scheduled</span>
+
+                                        </a>
+                                    </span>
+
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <div>
+                                    <span class="slds-pill slds-pill_link">
+                                        <a href="#" class="slds-pill__action" title="Full pill label verbiage mirrored here">
+                                            <span class="slds-pill__label">Booked a test drive</span>
+                                        </a>
+                                    </span>
+
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <div>
+                                    <span class="slds-pill slds-pill_link">
+                                        <a href="#" class="slds-pill__action" title="Full pill label verbiage mirrored here">
+                                            <span class="slds-pill__label">Case / Concern created</span>
+                                        </a>
+                                    </span>
+
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" padding="horizontal-large">
+                                <div>
+                                    <span class="slds-pill slds-pill_link">
+                                        <a href="#" class="slds-pill__action" title="Full pill label verbiage mirrored here">
+                                            <span class="slds-pill__label">Booking created</span>
+                                        </a>
+                                    </span>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="horizontal-large" class="slds-m-top_medium">
+                                <lightning-button style="float:right" variant="neutral" label="More" title="More" onclick={handleCustmertouchpts} icon-name="standard:sales_path" class="slds-p-around_xxx-small"></lightning-button>
+                            </lightning-layout-item>
+                        </lightning-layout>
+
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+            <br/><br/>
+        </div>
+        <template if:true={ownershipinfo}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Detail Page in profile Explorer
+                        </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        Sale date
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Insurance
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Shield
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                RSA
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Service due
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeModal} title="Close">Close</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+
+        </template>
+        <template if:true={customerexp}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-text-heading_medium slds-hyphenate"></h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <p>Case Id</p>
+                        <p>Concern ID</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeModal} title="Close">Close</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+
+        </template>
+        <template if:true={custmertouchpts}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-text-heading_medium slds-hyphenate"></h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <p>Email Engagement</p>
+                        <p>Website Metrics</p>
+                        <p>Call centre Additional Events</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeModal} title="Close">Close</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+
+        </template>
+
+
+    </template>

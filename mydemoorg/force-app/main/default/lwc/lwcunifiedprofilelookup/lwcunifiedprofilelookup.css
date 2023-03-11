@@ -1,0 +1,44 @@
+.sb-example-1 .search {
+    width: 40%;
+    position: relative;
+    display: flex;
+  }
+  .sb-example-1 .searchTerm {
+    width: 100%;
+    border: 3px solid #0176D5;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+  }
+  .sb-example-1 .searchTerm:focus{
+    color: #00B4CC;
+  }
+  .sb-example-1 .searchButton {
+    width: 40px;
+    height: 50px;
+    border: 1px solid #0176D5;
+    background: #0176D5;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .sb-example-1 .searchButton i{
+    color: #0052cc;
+  }
+
+.slds-icon-standard-search{
+  background-color: #0A74CF
+} 
+
+.lbl{
+    font-weight: bold;
+}
+
+.slds-pill__remove {
+    display: none !important;
+}
